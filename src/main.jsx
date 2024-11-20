@@ -4,11 +4,14 @@ import "@radix-ui/themes/styles.css";
 import { Theme } from "@radix-ui/themes";
 import "./index.css";
 import App from "./App.jsx";
+import { TodoContextProvider } from "./context/todoContext.jsx";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <Theme>
-      <App />
+    <Theme appearance="dark">
+      <TodoContextProvider>
+        <App />
+      </TodoContextProvider>
     </Theme>
   </StrictMode>
 );

@@ -1,13 +1,17 @@
-import "./config/connection"
-import Layout from './components/Layout'
+import "./config/connection";
+import Layout from "./components/Layout";
 import "./index.css";
+import CreateTodoModal from "./components/CreateTodoModal";
+import Todos from "./components/Todos";
+
 
 const App = () => {
   return (
     <Layout>
-      <h3>To do</h3>
+      <CreateTodoModal />
+      <Todos />
     </Layout>
-  )
-}
+  );
+};
 
-export default App
+export default App;
