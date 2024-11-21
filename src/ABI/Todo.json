@@ -65,8 +65,33 @@
 		"inputs": [
 			{
 				"indexed": false,
+				"internalType": "uint8",
+				"name": "index",
+				"type": "uint8"
+			},
+			{
+				"indexed": false,
+				"internalType": "enum TodoList.Status",
+				"name": "status",
+				"type": "uint8"
+			}
+		],
+		"name": "TodoCompleted",
+		"type": "event"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": false,
 				"internalType": "string",
 				"name": "title",
+				"type": "string"
+			},
+			{
+				"indexed": false,
+				"internalType": "string",
+				"name": "description",
 				"type": "string"
 			},
 			{
@@ -81,7 +106,14 @@
 	},
 	{
 		"anonymous": false,
-		"inputs": [],
+		"inputs": [
+			{
+				"indexed": false,
+				"internalType": "uint8",
+				"name": "index",
+				"type": "uint8"
+			}
+		],
 		"name": "TodoDeleted",
 		"type": "event"
 	},
@@ -90,8 +122,20 @@
 		"inputs": [
 			{
 				"indexed": false,
+				"internalType": "uint8",
+				"name": "index",
+				"type": "uint8"
+			},
+			{
+				"indexed": false,
 				"internalType": "string",
 				"name": "title",
+				"type": "string"
+			},
+			{
+				"indexed": false,
+				"internalType": "string",
+				"name": "description",
 				"type": "string"
 			},
 			{
