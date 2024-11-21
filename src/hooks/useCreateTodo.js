@@ -3,6 +3,7 @@ import useContractInstance from "./useContractInstance";
 import { useAppKitAccount, useAppKitNetwork } from "@reown/appkit/react";
 import { toast } from "react-toastify";
 import { baseSepolia } from "@reown/appkit/networks";
+import { ErrorDecoder } from "ethers-decode-error";
 
 const useCreateTodo = () => {
   const contract = useContractInstance(true);
@@ -41,7 +42,7 @@ const useCreateTodo = () => {
           gasLimit: (estimatedGas * BigInt(120)) / BigInt(100),
         });
 
-        const receipt = await  tx.wait();
+        const receipt = await tx.wait();
 
         if (receipt.status === 1) {
           toast.success("Todo created successfully");
@@ -51,8 +52,11 @@ const useCreateTodo = () => {
         toast.error("Failed to create todo");
         return;
       } catch (error) {
-        console.error("Error from creating todo", error);
-        toast.error("Failed to create todo");
+        const errorDecoder = ErrorDecoder.create();
+        const decodedError = errorDecoder.decode(error);
+        
+        console.error("Error from creating todo", decodedError);
+        toast.error((await decodedError).reason);
       }
     },
     [contract, address, chainId]

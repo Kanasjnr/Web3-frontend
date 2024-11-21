@@ -3,6 +3,7 @@ import useContractInstance from "./useContractInstance";
 import { useAppKitAccount, useAppKitNetwork } from "@reown/appkit/react";
 import { toast } from "react-toastify";
 import { baseSepolia } from "@reown/appkit/networks";
+import { ErrorDecoder } from "ethers-decode-error";
 
 const useCompleteTodo = () => {
   const contract = useContractInstance(true);
@@ -43,8 +44,11 @@ const useCompleteTodo = () => {
         toast.error("Failed to complete task");
         return;
       } catch (error) {
-        console.error("Error from completing todo", error);
-        toast.error("Failed to complete todo");
+        const errorDecoder = ErrorDecoder.create();
+        const decodedError = errorDecoder.decode(error);
+        
+        console.error("Error from creating todo", decodedError);
+        toast.error((await decodedError).reason);
       }
     },
     [contract, address, chainId]
